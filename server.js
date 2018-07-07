@@ -25,6 +25,10 @@ io.on('connection', function(socket) {
       y: 300
     };
   });
+  socket.on('disconnect', function() {
+    // remove disconnected player
+	delete players[socket.id];
+  });
   socket.on('movement', function(data) {
     var player = players[socket.id] || {};
     if (data.left) {
