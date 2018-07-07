@@ -61,7 +61,7 @@ setInterval(function() {
 	var timeDifference = currentTime - lastUpdateTime;
 	for(var id in players){
 		var player = players[id];
-		for(var unit in player.unit){
+		for(var unit in player.units){
 			var r = Math.floor(Math.random() * 10 - 5);
 			var s = Math.floor(Math.random() * 10 - 5);
 			player.units[unit].x += r * timeDifference;
