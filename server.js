@@ -95,8 +95,8 @@ setInterval(function() {
 		for(var unit in player.units){
 			var max = player.movement;
 			var min = player.movement*-1;
-			var r = Math.floor(Math.random() * (max-min))+min;
-			var s = Math.floor(Math.random() * (max-min))+min;
+			var r = Math.floor(Math.random() * (max-min+1))+min;
+			var s = Math.floor(Math.random() * (max-min+1))+min;
 			if((player.units[unit].x + r) < 0 || (player.units[unit].x + r) > 800){r *= -1;}
 			if((player.units[unit].y + s) < 0 || (player.units[unit].y + s) > 600){s *= -1;}
 			player.units[unit].x += r; // * timeDifference
