@@ -20,10 +20,10 @@ socket.on('state', function(players) {
   context.fillStyle = 'green';
   for (var id in players) {
     var player = players[id];
-	console.log(player,player.units);
+	//console.log(player,player.units);
 	for (var unit in player.units) {
 		context.beginPath();
-		context.arc(unit.x, unit.y, 10, 0, 2 * Math.PI);
+		context.arc(player.units.unit.x, player.units.unit.y, 10, 0, 2 * Math.PI);
 		context.fill();
 	}
   }
