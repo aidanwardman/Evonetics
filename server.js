@@ -122,17 +122,20 @@ setInterval(function() {
 						if(intersects(player.units[unit].x,player.units[unit].y,player.units[unit].hp*5,player2.units[unit2].x,player2.units[unit2].y,player2.units[unit2].hp*5)){
 							player.units[unit].hp -= player2.attack;
 							player2.units[unit2].hp -= player.attack;
-							if(player.units[unit].hp <= 0){
-								delete player.units[unit];
-							}
-							if(player2.units[unit2].hp <= 0){
-								delete player2.units[unit2];
-							}
 						}
 					}
 				}
 			}
 			lastUpdateTime = currentTime;
+		}
+	}
+	// Remove any dead units
+	for(var id in players){
+		var player = players[id];
+		for(var unit in player.units){
+			if(player.units[unit].hp <= 0){
+				delete player.units[unit];
+			}
 		}
 	}
 }, 1000 / 60);
