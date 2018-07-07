@@ -93,8 +93,8 @@ setInterval(function() {
 	for(var id in players){
 		var player = players[id];
 		for(var unit in player.units){
-			var r = Math.floor(Math.random() * ((player.movement*2)-player.movement) + player.movement);
-			var s = Math.floor(Math.random() * ((player.movement*2)-player.movement) + player.movement);
+			var r = Math.floor(Math.random() * (player.movement-player.movement) + player.movement);
+			var s = Math.floor(Math.random() * (player.movement-player.movement) + player.movement);
 			if((player.units[unit].x + r) < 0 || (player.units[unit].x + r) > 800){r *= -1;}
 			if((player.units[unit].y + s) < 0 || (player.units[unit].y + s) > 600){s *= -1;}
 			player.units[unit].x += r; // * timeDifference
