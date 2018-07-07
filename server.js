@@ -23,12 +23,20 @@ io.on('connection', function(socket) {
 	var x = Math.floor(Math.random()*(700-100)+1)+100;
 	var y = Math.floor(Math.random()*(500-100)+1)+100;
     players[socket.id] = {
-		units:[{x: x,y: y,hp:5}],
+		units:[{
+			x: x,
+			y: y,
+			hp:5,
+			path:{
+				x:x,
+				y:y
+			}
+		}],
 		attack:1,
 		defence:1,
 		health:1,
-		movement:1,
-		tracking:1,
+		speed:1,
+		tracking:0,
 		replication:1,
 		points:5
 	};
@@ -70,9 +78,9 @@ io.on('connection', function(socket) {
 					players[socket.id].points--;
 					players[socket.id].health++;
 					break;
-				case 'movement':
+				case 'speed':
 					players[socket.id].points--;
-					players[socket.id].movement++;
+					players[socket.id].speed++;
 					break;
 				case 'tracking':
 					players[socket.id].points--;
@@ -87,6 +95,10 @@ io.on('connection', function(socket) {
 	});
 });
 
+function intersects(x0,y0,x1,y1,r0,r1){
+	return Math.hypot(x0-x1, y0-y1) <= (r0 + r1);
+}
+
 // Do unit movement
 var lastUpdateTime = (new Date()).getTime();
 setInterval(function() {
@@ -95,14 +107,31 @@ setInterval(function() {
 	for(var id in players){
 		var player = players[id];
 		for(var unit in player.units){
-			var max = player.movement;
-			var min = player.movement*-1;
+			var max = player.speed;
+			var min = player.speed*-1;
 			var r = Math.floor(Math.random() * (max-min+1))+min;
 			var s = Math.floor(Math.random() * (max-min+1))+min;
 			if((player.units[unit].x + r) < 0 || (player.units[unit].x + r) > 800){r *= -1;}
 			if((player.units[unit].y + s) < 0 || (player.units[unit].y + s) > 600){s *= -1;}
 			player.units[unit].x += r; // * timeDifference
 			player.units[unit].y += s;
+			for(id2 in players){ // check all units for collision
+				var player2 = players[id2];
+				if(id != id2){ // dont check own units
+					for(var unit2 in player2.units){
+						if(intersects(player.units[unit].x,player.units[unit].y,player.units[unit].hp*5,player2.units[unit2].x,player2.units[unit2].y,player2.units[unit2].hp*5)){
+							player.units[unit].hp -= player2.attack;
+							player2.units[unit2].hp -= player.attack;
+							if(player.units[unit].hp <= 0){
+								delete player.units[unit];
+							}
+							if(player2.units[unit2].hp <= 0){
+								delete player2.units[unit2];
+							}
+						}
+					}
+				}
+			}
 			lastUpdateTime = currentTime;
 		}
 	}
@@ -113,12 +142,10 @@ setInterval(function() {
 	var timeDifference = currentTime - lastUpdateTime;
 	for(var id in players){
 		var player = players[id];
-		console.log(player.units.length,player.replication);
 		if(player.units.length < player.replication){
 			var x = Math.floor(Math.random()*(700-100)+1)+100;
 			var y = Math.floor(Math.random()*(500-100)+1)+100;
-			player.units.push({x: x,y: y,hp:player.health*5});
-			console.log("Adding Unit");
+			player.units.push({x: x,y: y,hp:player.health*5,path:{x:x,y:y}});
 		}
 	}
 }, 5000 / 1);

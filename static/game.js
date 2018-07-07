@@ -15,7 +15,7 @@ var upgrades = document.getElementById('upgrades');
 var attack = document.getElementById('attack');
 var defence = document.getElementById('defence');
 var health = document.getElementById('health');
-var movement = document.getElementById('movement');
+var speed = document.getElementById('speed');
 var tracking = document.getElementById('tracking');
 var replication = document.getElementById('replication');
 var points = document.getElementById('points');
@@ -23,21 +23,21 @@ canvas.width = 800;
 canvas.height = 600;
 var context = canvas.getContext('2d');
 socket.on('state', function(players) {
-  context.clearRect(0, 0, 800, 600);
+context.clearRect(0, 0, 800, 600);
  
-  for (var id in players) {
-    var player = players[id];
-	console.log(player,player.units);
+for (var id in players) {
+	var player = players[id];
+
 	if(socket.id == id){
 		attack.innerHTML = "Attack ("+player.attack+")";
 		defence.innerHTML ="Defence ("+player.defence+")";
 		health.innerHTML ="Health ("+player.health+")";
-		movement.innerHTML = "Movement ("+player.movement+")";
+		speed.innerHTML = "Speed ("+player.speed+")";
 		tracking.innerHTML = "Tracking ("+player.tracking+")";
 		replication.innerHTML = "Replication ("+player.replication+")";
 		points.innerHTML = player.points;
 	}
-	console.log(id,player.units.length,player.replication);
+
 	for (var unit=0; unit<player.units.length;unit++) {
 		if(socket.id == id){
 			context.fillStyle = 'green';
@@ -45,7 +45,7 @@ socket.on('state', function(players) {
 			context.fillStyle = 'red';
 		}
 		context.beginPath();
-		context.arc(player.units[unit].x, player.units[unit].y, 10+(player.health), 0, 2 * Math.PI);
+		context.arc(player.units[unit].x, player.units[unit].y, player.health*5, 0, 2 * Math.PI);
 		context.fill();
 		
 		//context = canvas.getContext("2d");
