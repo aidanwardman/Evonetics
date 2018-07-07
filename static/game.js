@@ -30,13 +30,13 @@ socket.on('state', function(players) {
 	//console.log(player,player.units);
 	if(socket.id == id){
 		context.fillStyle = 'green';
-		attack.innerHTML("Attack ("+player.attack+")");
-		defence.innerHTML("Defence ("+player.defence+")");
-		health.innerHTML("Health ("+player.health+")");
-		movement.innerHTML("Movement ("+player.movement+")");
-		tracking.innerHTML("Tracking ("+player.tracking+")");
-		replication.innerHTML("Replication ("+player.replication+")");
-		points.innerHTML(player.points);
+		attack.innerHTML = "Attack ("+player.attack+")";
+		defence.innerHTML ="Defence ("+player.defence+")";
+		health.innerHTML ="Health ("+player.health+")";
+		movement.innerHTML = "Movement ("+player.movement+")";
+		tracking.innerHTML = "Tracking ("+player.tracking+")";
+		replication.innerHTML = "Replication ("+player.replication+")";
+		points.innerHTML = player.points;
 	}else{
 		context.fillStyle = 'red';
 	}
