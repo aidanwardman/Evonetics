@@ -21,7 +21,7 @@ var players = {};
 io.on('connection', function(socket) {
   socket.on('new player', function() {
     players[socket.id] = {
-		units:[{x: 300,y: 300}],
+		units:[{x: 300,y: 300,hp:10}],
 		attack:1,
 		defence:1,
 		health:1,

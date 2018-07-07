@@ -42,14 +42,14 @@ socket.on('state', function(players) {
 	}
 	for (var unit in player.units) {
 		context.beginPath();
-		context.arc(player.units[unit].x, player.units[unit].y, 10, 0, 2 * Math.PI);
+		context.arc(player.units[unit].x, player.units[unit].y, 10+(player.health), 0, 2 * Math.PI);
 		context.fill();
 		
 		context = canvas.getContext("2d");
 		context.font = '8pt Calibri';
 		context.fillStyle = 'white';
 		context.textAlign = 'center';
-		context.fillText('0', player.units[unit].x, player.units[unit].y+3);
+		context.fillText(player.units[unit].hp, player.units[unit].x, player.units[unit].y+3);
 	}
   }
 });
