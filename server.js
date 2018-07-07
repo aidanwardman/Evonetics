@@ -68,7 +68,6 @@ setInterval(function() {
 			lastUpdateTime = currentTime;
 		}
 	}
-  }
 }, 1000 / 60);
 
 setInterval(function() {
