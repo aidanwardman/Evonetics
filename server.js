@@ -59,12 +59,13 @@ var lastUpdateTime = (new Date()).getTime();
 setInterval(function() {
 	var currentTime = (new Date()).getTime();
 	var timeDifference = currentTime - lastUpdateTime;
-	for(var i=0; i<players.length;i++){
-		for(var j=0; j<players[i].units.length;j++){
+	for(var id in players){
+		var player = players[id];
+		for(var unit in player.unit){
 			var r = Math.floor(Math.random() * 10 - 5);
 			var s = Math.floor(Math.random() * 10 - 5);
-			players[i].units[j].x += r * timeDifference;
-			players[i].units[j].y += s * timeDifference;
+			unit.x += r * timeDifference;
+			unit.y += s * timeDifference;
 			lastUpdateTime = currentTime;
 		}
 	}
