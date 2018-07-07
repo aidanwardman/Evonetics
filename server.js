@@ -21,7 +21,7 @@ var players = {};
 io.on('connection', function(socket) {
   socket.on('new player', function() {
     players[socket.id] = {
-		units:[{x: 300,y: 300,hp:10}],
+		units:[{x: 300,y: 300,hp:5}],
 		attack:1,
 		defence:1,
 		health:1,
@@ -105,6 +105,17 @@ setInterval(function() {
 		}
 	}
 }, 1000 / 30);
+
+setInterval(function() {
+	var currentTime = (new Date()).getTime();
+	var timeDifference = currentTime - lastUpdateTime;
+	for(var id in players){
+		var player = players[id];
+		if(player.units.length < player.replication){
+			player.units.push({x: 400,y: 300,hp:player.health*5});
+		}
+	}
+}, 60000 / 1);
 
 setInterval(function() {
   io.sockets.emit('state', players);
