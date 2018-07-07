@@ -130,12 +130,17 @@ setInterval(function() {
 		}
 	}
 	// Remove any dead units
+	
 	for(var id in players){
+		var removes = [];
 		var player = players[id];
 		for(var unit in player.units){
 			if(player.units[unit].hp <= 0){
-				delete player.units[unit];
+				removes.push(unit);
 			}
+		}
+		for(var r in removes){
+			player.units.splice(r,1);
 		}
 	}
 }, 1000 / 60);
