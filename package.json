@@ -1,0 +1,17 @@
+{
+  "name": "Evonetics",
+  "description": "A multiplayer Evolution and Genetics based combat game.",
+  "version": "0.0.1",
+  "license": "GPL-3.0-only",
+  "author" : "Aidan Wardman",
+  "repository" : { 
+	"type" : "git",
+	"url" : "https://github.com/aidanwardman/Evonetics"
+  },
+  "dependencies": {
+    "express": "latest",
+	"http": "latest",
+	"path": "latest",
+	"socketIO": "latest"
+  }
+}
