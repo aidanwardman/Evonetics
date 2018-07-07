@@ -21,16 +21,23 @@ var players = {};
 io.on('connection', function(socket) {
   socket.on('new player', function() {
     players[socket.id] = {
-      x: 300,
-      y: 300
-    };
+		units:[{x: 300,y: 300}],
+		attack:1,
+		defence:1,
+		health:1,
+		movement:1,
+		tracking:1,
+		replication:1
+	};
   });
   socket.on('disconnect', function() {
     // remove disconnected player
 	delete players[socket.id];
   });
+  /*
   socket.on('movement', function(data) {
     var player = players[socket.id] || {};
+	
     if (data.left) {
       player.x -= 5;
     }
@@ -44,7 +51,26 @@ io.on('connection', function(socket) {
       player.y += 5;
     }
   });
+  */
 });
+
+// Do unit movement
+var lastUpdateTime = (new Date()).getTime();
+setInterval(function() {
+	var currentTime = (new Date()).getTime();
+	var timeDifference = currentTime - lastUpdateTime;
+	for(var i=0; i<players.length;i++){
+		for(var j=0; j<players[i].units.length;j++){
+			var r = Math.floor(Math.random() * 10 - 5);
+			var s = Math.floor(Math.random() * 10 - 5);
+			players[i].units[j].x += r * timeDifference;
+			players[i].units[j].y += s * timeDifference;
+			lastUpdateTime = currentTime;
+		}
+	}
+  }
+}, 1000 / 60);
+
 setInterval(function() {
   io.sockets.emit('state', players);
 }, 1000 / 60);
