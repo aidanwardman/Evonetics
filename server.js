@@ -113,6 +113,7 @@ setInterval(function() {
 	var timeDifference = currentTime - lastUpdateTime;
 	for(var id in players){
 		var player = players[id];
+		console.log(player.units.length,player.replication);
 		if(player.units.length < player.replication){
 			var x = Math.floor(Math.random()*(700-100)+1)+100;
 			var y = Math.floor(Math.random()*(500-100)+1)+100;
