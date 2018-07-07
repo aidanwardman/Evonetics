@@ -12,6 +12,6 @@
     "express": "latest",
 	"http": "latest",
 	"path": "latest",
-	"socketIO": "latest"
+	"socketio": "latest"
   }
 }
