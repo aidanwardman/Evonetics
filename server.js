@@ -64,8 +64,8 @@ setInterval(function() {
 		for(var unit in player.unit){
 			var r = Math.floor(Math.random() * 10 - 5);
 			var s = Math.floor(Math.random() * 10 - 5);
-			unit.x += r * timeDifference;
-			unit.y += s * timeDifference;
+			player.units[unit].x += r * timeDifference;
+			player.units[unit].y += s * timeDifference;
 			lastUpdateTime = currentTime;
 		}
 	}
