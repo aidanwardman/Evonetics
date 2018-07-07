@@ -40,6 +40,7 @@ socket.on('state', function(players) {
 	}else{
 		context.fillStyle = 'red';
 	}
+	console.log(id,player.units.length,player.replication);
 	for (var unit in player.units) {
 		context.beginPath();
 		context.arc(player.units[unit].x, player.units[unit].y, 10+(player.health), 0, 2 * Math.PI);
