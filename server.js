@@ -62,14 +62,14 @@ setInterval(function() {
 	for(var id in players){
 		var player = players[id];
 		for(var unit in player.units){
-			var r = Math.floor(Math.random() * 10 - 5);
-			var s = Math.floor(Math.random() * 10 - 5);
+			var r = Math.floor(Math.random() * 5 - 2);
+			var s = Math.floor(Math.random() * 5 - 2);
 			player.units[unit].x += r * timeDifference;
 			player.units[unit].y += s * timeDifference;
 			lastUpdateTime = currentTime;
 		}
 	}
-}, 1000 / 60);
+}, 1000 / 5);
 
 setInterval(function() {
   io.sockets.emit('state', players);
