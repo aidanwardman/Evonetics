@@ -29,7 +29,6 @@ socket.on('state', function(players) {
     var player = players[id];
 	console.log(player,player.units);
 	if(socket.id == id){
-		context.fillStyle = 'green';
 		attack.innerHTML = "Attack ("+player.attack+")";
 		defence.innerHTML ="Defence ("+player.defence+")";
 		health.innerHTML ="Health ("+player.health+")";
@@ -37,16 +36,19 @@ socket.on('state', function(players) {
 		tracking.innerHTML = "Tracking ("+player.tracking+")";
 		replication.innerHTML = "Replication ("+player.replication+")";
 		points.innerHTML = player.points;
-	}else{
-		context.fillStyle = 'red';
 	}
 	console.log(id,player.units.length,player.replication);
 	for (var unit=0; unit<player.units.length;unit++) {
+		if(socket.id == id){
+			context.fillStyle = 'green';
+		}else{
+			context.fillStyle = 'red';
+		}
 		context.beginPath();
 		context.arc(player.units[unit].x, player.units[unit].y, 10+(player.health), 0, 2 * Math.PI);
 		context.fill();
 		
-		context = canvas.getContext("2d");
+		//context = canvas.getContext("2d");
 		context.font = '8pt Calibri';
 		context.fillStyle = 'white';
 		context.textAlign = 'center';
