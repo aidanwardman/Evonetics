@@ -13,13 +13,13 @@
   <body>
     <canvas id="canvas"></canvas>
 	<div id="upgrades">
-		<span id="points"></span>
-		<button id="upattack">Attack</button>
-		<button id="updefence">Defence</button>
-		<button id="uphealth">Health</button>
-		<button id="upmovement">Movement</button>
-		<button id="uptracking">Tracking</button>
-		<button id="upreplication">Replication</button>
+		Points: <span id="points">0</span>
+		<button id="upattack" onclick="upgrade('attack')">Attack (1)</button>
+		<button id="updefence" onclick="upgrade('defence')">Defence (1)</button>
+		<button id="uphealth" onclick="upgrade('health')">Health (1)</button>
+		<button id="upmovement" onclick="upgrade('movement')">Movement (1)</button>
+		<button id="uptracking" onclick="upgrade('tracking')">Tracking (1)</button>
+		<button id="upreplication" onclick="upgrade('replication')">Replication (1)</button>
 	</div>
   </body>
   <script src="/static/game.js"></script>

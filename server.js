@@ -27,7 +27,8 @@ io.on('connection', function(socket) {
 		health:1,
 		movement:1,
 		tracking:1,
-		replication:1
+		replication:1,
+		points:5
 	};
   });
   socket.on('disconnect', function() {
@@ -52,6 +53,36 @@ io.on('connection', function(socket) {
     }
   });
   */
+	socket.on('upgrade', function(item) {
+		if(players[socket.id].points > 0){
+			switch(item){
+				case 'attack':
+					players[socket.id].points--;
+					players[socket.id].attack++;
+					break;
+				case 'defence':
+					players[socket.id].points--;
+					players[socket.id].defence++;
+					break;
+				case 'health':
+					players[socket.id].points--;
+					players[socket.id].health++;
+					break;
+				case 'movement':
+					players[socket.id].points--;
+					players[socket.id].movement++;
+					break;
+				case 'tracking':
+					players[socket.id].points--;
+					players[socket.id].tracking++;
+					break;
+				case 'replication':
+					players[socket.id].points--;
+					players[socket.id].replication++;
+					break;
+			}
+		}
+	});
 });
 
 // Do unit movement
@@ -62,14 +93,14 @@ setInterval(function() {
 	for(var id in players){
 		var player = players[id];
 		for(var unit in player.units){
-			var r = Math.floor(Math.random() * 4 - 2);
-			var s = Math.floor(Math.random() * 4 - 2);
+			var r = Math.floor(Math.random() * player.movement - player.movement);
+			var s = Math.floor(Math.random() * player.movement - player.movement);
 			player.units[unit].x += r; // * timeDifference
 			player.units[unit].y += s;
 			lastUpdateTime = currentTime;
 		}
 	}
-}, 1000 / 5);
+}, 1000 / 30);
 
 setInterval(function() {
   io.sockets.emit('state', players);
