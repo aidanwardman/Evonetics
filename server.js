@@ -69,7 +69,7 @@ setInterval(function() {
 			lastUpdateTime = currentTime;
 		}
 	}
-}, 1000 / 1);
+}, 1000 / 5);
 
 setInterval(function() {
   io.sockets.emit('state', players);
