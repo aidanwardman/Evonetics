@@ -27,7 +27,7 @@ socket.on('state', function(players) {
  
   for (var id in players) {
     var player = players[id];
-	//console.log(player,player.units);
+	console.log(player,player.units);
 	if(socket.id == id){
 		context.fillStyle = 'green';
 		attack.innerHTML = "Attack ("+player.attack+")";
