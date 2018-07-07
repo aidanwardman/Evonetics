@@ -106,7 +106,7 @@ setInterval(function() {
 			lastUpdateTime = currentTime;
 		}
 	}
-}, 1000 / 30);
+}, 1000 / 60);
 
 setInterval(function() {
 	var currentTime = (new Date()).getTime();
