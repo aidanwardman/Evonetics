@@ -34,11 +34,11 @@ var context = canvas.getContext('2d');
 socket.on('state', function(players) {
 context.clearRect(0, 0, 800, 600);
 var leaderboard = document.getElementById('leaderboard');
-var leaders = "";
+var leaders = "<tr><th>Leaderboard</th><th>Score</th></tr>";
 for (var id in players) {
 	
 	var player = players[id];
-	leaders += "<td>"+player.name+"</td><td>"+player.score+"</td>";
+	leaders += "<tr><td>"+player.name+"</td><td>"+player.score+"</td></tr>";
 	
 	if(socket.id == id){
 		attackc.innerHTML = player.attack+1;
