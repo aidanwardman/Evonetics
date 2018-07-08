@@ -42,7 +42,7 @@ for (var id in players) {
 		defencec.innerHTML = player.defence+1;
 		healthc.innerHTML = player.health+1;
 		speedc.innerHTML = player.speed*2;
-		trackingc.innerHTML = player.tracking*5;
+		trackingc.innerHTML = player.tracking*4;
 		replicationc.innerHTML = player.replication*3;
 		
 		attackl.innerHTML = player.attack;
@@ -63,7 +63,7 @@ for (var id in players) {
 			case 4:
 				trackingl.innerHTML = "Strong Hunting";
 				break;
-			default"
+			default:
 				trackingl.innerHTML = "Unknown";
 				break;
 		}

@@ -92,8 +92,8 @@ io.on('connection', function(socket) {
 					}
 					break;
 				case 'tracking':
-					if(p >= players[socket.id].tracking*5){
-						players[socket.id].points -= players[socket.id].tracking*3;
+					if(p >= players[socket.id].tracking*4){
+						players[socket.id].points -= players[socket.id].tracking*4;
 						players[socket.id].tracking++;
 					}
 					break;
