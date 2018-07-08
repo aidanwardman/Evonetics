@@ -49,10 +49,28 @@ for (var id in players) {
 		defencel.innerHTML = player.defence;
 		healthl.innerHTML = player.health;
 		speedl.innerHTML = player.speed;
-		trackingl.innerHTML = player.tracking;
+		
+		switch(player.tracking){
+			case 1:
+				trackingl.innerHTML = "Random";
+				break;
+			case 2:
+				trackingl.innerHTML = "Pathing";
+				break;
+			case 3:
+				trackingl.innerHTML = "Weak Hunting";
+				break;
+			case 4:
+				trackingl.innerHTML = "Strong Hunting";
+				break;
+			default"
+				trackingl.innerHTML = "Unknown";
+				break;
+		}
 		replicationl.innerHTML = player.replication;
 		
 		points.innerHTML = player.points;
+		units.innerHTML = player.units.length;
 	}
 
 	for (var unit=0; unit<player.units.length;unit++) {
