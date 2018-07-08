@@ -14,12 +14,29 @@
     <canvas id="canvas"></canvas>
 	<div id="upgrades">
 		Points: <span id="points">0</span>
-		<button id="attack" onclick="upgrade('attack')">Attack (1)</button>
-		<button id="defence" onclick="upgrade('defence')">Defence (1)</button>
-		<button id="health" onclick="upgrade('health')">Health (1)</button>
-		<button id="speed" onclick="upgrade('speed')">Speed (1)</button>
-		<button id="tracking" onclick="upgrade('tracking')">Tracking (0)</button>
-		<button id="replication" onclick="upgrade('replication')">Replication (1)</button>
+		<table>
+			<tr>
+				<th>Ability</th><th>Level</th><th>Upgrade Cost</th><th></th>
+			</tr>
+			<tr>
+				<td>Attack</td><td id="attacklevel">0</td><td id="attackcost">0</td><td><button onclick="upgrade('attack')">Upgrade</button></td>
+			</tr>
+			<tr>
+				<td>Defence</td><td id="defencelevel">0</td><td id="defencecost">0</td><td><button onclick="upgrade('defence')">Upgrade</button></td>
+			</tr>
+			<tr>
+				<td>Health</td><td id="healthlevel">0</td><td id="healthcost">0</td><td><button onclick="upgrade('health')">Upgrade</button></td>
+			</tr>
+			<tr>
+				<td>Speed</td><td id="speedlevel">0</td><td id="speedcost">0</td><td><button onclick="upgrade('speed')">Upgrade</button></td>
+			</tr>
+			<tr>
+				<td>Tracking</td><td id="trackinglevel">0</td><td id="trackingcost">0</td><td><button onclick="upgrade('tracking')">Upgrade</button></td>
+			</tr>
+			<tr>
+				<td>Replication</td><td id="replicationlevel">0</td><td id="replicationcost">0</td><td><button onclick="upgrade('replication')">Upgrade</button></td>
+			</tr>
+		</table>
 	</div>
   </body>
   <script src="/static/game.js"></script>

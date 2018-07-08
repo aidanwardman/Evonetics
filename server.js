@@ -36,7 +36,7 @@ io.on('connection', function(socket) {
 		defence:1,
 		health:1,
 		speed:1,
-		tracking:0,
+		tracking:1,
 		replication:1,
 		points:5
 	};
@@ -64,31 +64,44 @@ io.on('connection', function(socket) {
   });
   */
 	socket.on('upgrade', function(item) {
-		if(players[socket.id].points > 0){
+		var p = players[socket.id].points;
+		if(p > 0){
 			switch(item){
 				case 'attack':
-					players[socket.id].points--;
-					players[socket.id].attack++;
+					if(p >= players[socket.id].attack+1){
+						players[socket.id].points -= players[socket.id].attack+1;
+						players[socket.id].attack++;
+					}
 					break;
 				case 'defence':
-					players[socket.id].points--;
-					players[socket.id].defence++;
+					if(p >= players[socket.id].defence+1){
+						players[socket.id].points -= players[socket.id].defence+1;
+						players[socket.id].defence++;
+					}
 					break;
 				case 'health':
-					players[socket.id].points--;
-					players[socket.id].health++;
+					if(p >= players[socket.id].health+1){
+						players[socket.id].points -= players[socket.id].health+1;
+						players[socket.id].health++;
+					}
 					break;
 				case 'speed':
-					players[socket.id].points--;
-					players[socket.id].speed++;
+					if(p >= players[socket.id].speed*2){
+						players[socket.id].points -= players[socket.id].speed*2;
+						players[socket.id].speed++;
+					}
 					break;
 				case 'tracking':
-					players[socket.id].points--;
-					players[socket.id].tracking++;
+					if(p >= players[socket.id].tracking*5){
+						players[socket.id].points -= players[socket.id].tracking*3;
+						players[socket.id].tracking++;
+					}
 					break;
 				case 'replication':
-					players[socket.id].points--;
-					players[socket.id].replication++;
+					if(p >= players[socket.id].replication*3){
+						players[socket.id].points -= players[socket.id].replication*3;
+						players[socket.id].replication++;
+					}
 					break;
 			}
 		}

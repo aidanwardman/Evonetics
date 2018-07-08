@@ -12,12 +12,21 @@ setInterval(function() {
 
 var canvas = document.getElementById('canvas');
 var upgrades = document.getElementById('upgrades');
-var attack = document.getElementById('attack');
-var defence = document.getElementById('defence');
-var health = document.getElementById('health');
-var speed = document.getElementById('speed');
-var tracking = document.getElementById('tracking');
-var replication = document.getElementById('replication');
+
+var attackl = document.getElementById('attacklevel');
+var defencel = document.getElementById('defencelevel');
+var healthl = document.getElementById('healthlevel');
+var speedl = document.getElementById('speedlevel');
+var trackingl = document.getElementById('trackinglevel');
+var replicationl = document.getElementById('replicationlevel');
+
+var attackc = document.getElementById('attackcost');
+var defencec = document.getElementById('defencecost');
+var healthc = document.getElementById('healthcost');
+var speedc = document.getElementById('speedcost');
+var trackingc = document.getElementById('trackingcost');
+var replicationc = document.getElementById('replicationcost');
+
 var points = document.getElementById('points');
 canvas.width = 800;
 canvas.height = 600;
@@ -29,12 +38,20 @@ for (var id in players) {
 	var player = players[id];
 
 	if(socket.id == id){
-		attack.innerHTML = "Attack ("+player.attack+")";
-		defence.innerHTML ="Defence ("+player.defence+")";
-		health.innerHTML ="Health ("+player.health+")";
-		speed.innerHTML = "Speed ("+player.speed+")";
-		tracking.innerHTML = "Tracking ("+player.tracking+")";
-		replication.innerHTML = "Replication ("+player.replication+")";
+		attackc.innerHTML = player.attack+1;
+		defencec.innerHTML = player.defence+1;
+		healthc.innerHTML = player.health+1;
+		speedc.innerHTML = player.speed*2;
+		trackingc.innerHTML = player.tracking*5;
+		replicationc.innerHTML = player.replication*3;
+		
+		attackl.innerHTML = player.attack;
+		defencel.innerHTML = player.defence;
+		healthl.innerHTML = player.health;
+		speedl.innerHTML = player.speed;
+		trackingl.innerHTML = player.tracking;
+		replicationl.innerHTML = player.replication;
+		
 		points.innerHTML = player.points;
 	}
 
