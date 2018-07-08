@@ -23,6 +23,8 @@ io.on('connection', function(socket) {
 	var x = Math.floor(Math.random()*(700-100)+1)+100;
 	var y = Math.floor(Math.random()*(500-100)+1)+100;
     players[socket.id] = {
+		name = socket.id,
+		score = 0,
 		units:[{
 			x: x,
 			y: y,
@@ -63,6 +65,10 @@ io.on('connection', function(socket) {
     }
   });
   */
+	socket.on('name', function(name) {
+		players[socket.id].name = name;
+	});
+  
 	socket.on('upgrade', function(item) {
 		var p = players[socket.id].points;
 		if(p > 0){
@@ -165,9 +171,11 @@ setInterval(function() {
 								player2.units[unit2].hp -= player.attack;
 								if(player.units[unit].hp <= 0){
 									player2.points++;
+									player2.score++;
 								}
 								if(player2.units[unit2].hp <= 0){
 									player.points++;
+									player.score++;
 								}
 							}
 						}

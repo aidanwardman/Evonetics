@@ -33,10 +33,13 @@ canvas.height = 600;
 var context = canvas.getContext('2d');
 socket.on('state', function(players) {
 context.clearRect(0, 0, 800, 600);
- 
+var leaderboard = document.getElementById('leaderboard');
+var leaders = "";
 for (var id in players) {
+	
 	var player = players[id];
-
+	leaders += "<td>"+player.name+"</td><td>"+player.score+"</td>";
+	
 	if(socket.id == id){
 		attackc.innerHTML = player.attack+1;
 		defencec.innerHTML = player.defence+1;
@@ -92,8 +95,14 @@ for (var id in players) {
 		}
 	}
   }
+  leaderboard.innerHTML = leaders;
 });
 
 function upgrade(item){
 	socket.emit('upgrade',item);
+}
+
+function nameupdate(n){
+	var name = n.value;
+	socket.emit('name',name);
 }

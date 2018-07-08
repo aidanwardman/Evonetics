@@ -15,10 +15,10 @@
 	<div id="upgrades">
 		<table cellspacing="5" cellpadding="5" border="1">
 			<tr>
-				<th>Points</th><th></th><th>Units Alive</th><th></th>
+				<th>Points</th><th>Units Alive</th><th></th><th>Name</th>
 			</tr>
 			<tr>
-				<td id="points">0</td><td></td><td id="units">0</td><td></td>
+				<td id="points">0</td><td id="units">0</td><td></td><td><input type="text" id="name" onchange="nameupdate(this)"></input></td>
 			</tr>
 			<tr>
 				<th>Ability</th><th>Level</th><th>Upgrade Cost</th><th></th>
@@ -41,6 +41,9 @@
 			<tr>
 				<td>Replication</td><td id="replicationlevel">0</td><td id="replicationcost">0</td><td><button onclick="upgrade('replication')">Upgrade</button></td>
 			</tr>
+		</table>
+		<table cellspacing="5" cellpadding="5" border="1" id="leaderboard">
+		
 		</table>
 	</div>
   </body>
