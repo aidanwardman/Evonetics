@@ -26,7 +26,7 @@ io.on('connection', function(socket) {
 		units:[{
 			x: x,
 			y: y,
-			hp:5,
+			hp:7,
 			path:{
 				x:x,
 				y:y
@@ -167,7 +167,8 @@ setInterval(function() {
 		if(player.units.length < player.replication){
 			var x = Math.floor(Math.random()*(700-100)+1)+100;
 			var y = Math.floor(Math.random()*(500-100)+1)+100;
-			player.units.push({x: x,y: y,hp:player.health*5,path:{x:x,y:y}});
+			var hp = 5+(player.health*2);
+			player.units.push({x: x,y: y,hp:hp,path:{x:x,y:y}});
 		}
 	}
 }, 5000 / 1);
