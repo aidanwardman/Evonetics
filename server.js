@@ -23,8 +23,8 @@ io.on('connection', function(socket) {
 	var x = Math.floor(Math.random()*(700-100)+1)+100;
 	var y = Math.floor(Math.random()*(500-100)+1)+100;
     players[socket.id] = {
-		name = socket.id.toString(),
-		score = 0,
+		name: socket.id,
+		score: 0,
 		units:[{
 			x: x,
 			y: y,
