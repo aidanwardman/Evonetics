@@ -124,7 +124,7 @@ setInterval(function() {
 				var player2 = players[id2];
 				if(id != id2){ // dont check own units
 					for(var unit2 in player2.units){
-						if(intersects(player.units[unit].x,player.units[unit].y,player.units[unit].hp*5,player2.units[unit2].x,player2.units[unit2].y,player2.units[unit2].hp*5)){
+						if(intersects(player.units[unit].x,player.units[unit].y,player.units[unit].hp,player2.units[unit2].x,player2.units[unit2].y,player2.units[unit2].hp)){
 							player.units[unit].hp -= player2.attack;
 							player2.units[unit2].hp -= player.attack;
 						}
