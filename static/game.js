@@ -44,15 +44,17 @@ for (var id in players) {
 		}else{
 			context.fillStyle = 'red';
 		}
-		context.beginPath();
-		context.arc(player.units[unit].x, player.units[unit].y, player.units[unit].hp, 0, 2 * Math.PI);
-		context.fill();
-		
-		//context = canvas.getContext("2d");
-		context.font = '8pt Calibri';
-		context.fillStyle = 'white';
-		context.textAlign = 'center';
-		context.fillText(player.units[unit].hp, player.units[unit].x, player.units[unit].y+3);
+		if(player.units[unit].hp > 0){
+			context.beginPath();
+			context.arc(player.units[unit].x, player.units[unit].y, player.units[unit].hp, 0, 2 * Math.PI);
+			context.fill();
+			
+			//context = canvas.getContext("2d");
+			context.font = '8pt Calibri';
+			context.fillStyle = 'white';
+			context.textAlign = 'center';
+			context.fillText(player.units[unit].hp, player.units[unit].x, player.units[unit].y+3);
+		}
 	}
   }
 });

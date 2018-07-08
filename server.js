@@ -112,14 +112,36 @@ setInterval(function() {
 	for(var id in players){
 		var player = players[id];
 		for(var unit in player.units){
-			var max = player.speed;
-			var min = player.speed*-1;
-			var r = Math.floor(Math.random() * (max-min+1))+min;
-			var s = Math.floor(Math.random() * (max-min+1))+min;
-			if((player.units[unit].x + r) < 0 || (player.units[unit].x + r) > 800){r *= -1;}
-			if((player.units[unit].y + s) < 0 || (player.units[unit].y + s) > 600){s *= -1;}
-			player.units[unit].x += r; // * timeDifference
-			player.units[unit].y += s;
+			// Unit movement
+			if(player.tracking <= 1){
+				var max = player.speed;
+				var min = player.speed*-1;
+				var r = Math.floor(Math.random() * (max-min+1))+min;
+				var s = Math.floor(Math.random() * (max-min+1))+min;
+				if((player.units[unit].x + r) < 0 || (player.units[unit].x + r) > 800){r *= -1;}
+				if((player.units[unit].y + s) < 0 || (player.units[unit].y + s) > 600){s *= -1;}
+				player.units[unit].x += r; // * timeDifference
+				player.units[unit].y += s;
+			}else{
+				if(intersects(player.units[unit].x,player.units[unit].y,player.units[unit].hp,player.units[unit].path.x,player.units[unit].path.y,5)){
+					var x = Math.floor(Math.random()*(700-100)+1)+100;
+					var y = Math.floor(Math.random()*(500-100)+1)+100;
+					player.units[unit].path.x = x;
+					player.units[unit].path.y = y;
+				}
+				if(player.units[unit].x < player.units[unit].path.x){
+					player.units[unit].x += player.speed;
+				}else{
+					player.units[unit].x -= player.speed;
+				}
+				if(player.units[unit].y < player.units[unit].path.y){
+					player.units[unit].y += player.speed;
+				}else{
+					player.units[unit].y -= player.speed;
+				}
+			}
+			
+			// Collision detection
 			for(id2 in players){ // check all units for collision
 				var player2 = players[id2];
 				if(id != id2){ // dont check own units
