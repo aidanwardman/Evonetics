@@ -45,7 +45,7 @@ for (var id in players) {
 			context.fillStyle = 'red';
 		}
 		context.beginPath();
-		context.arc(player.units[unit].x, player.units[unit].y, player.health*5, 0, 2 * Math.PI);
+		context.arc(player.units[unit].x, player.units[unit].y, player.units[unit].hp, 0, 2 * Math.PI);
 		context.fill();
 		
 		//context = canvas.getContext("2d");

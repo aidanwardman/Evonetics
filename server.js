@@ -124,9 +124,17 @@ setInterval(function() {
 				var player2 = players[id2];
 				if(id != id2){ // dont check own units
 					for(var unit2 in player2.units){
-						if(intersects(player.units[unit].x,player.units[unit].y,player.units[unit].hp,player2.units[unit2].x,player2.units[unit2].y,player2.units[unit2].hp)){
-							player.units[unit].hp -= player2.attack;
-							player2.units[unit2].hp -= player.attack;
+						if(player.units[unit].hp > 0 && player2.units[unit2].hp > 0){
+							if(intersects(player.units[unit].x,player.units[unit].y,player.units[unit].hp,player2.units[unit2].x,player2.units[unit2].y,player2.units[unit2].hp)){
+								player.units[unit].hp -= player2.attack;
+								player2.units[unit2].hp -= player.attack;
+								if(player.units[unit].hp <= 0){
+									player2.points++;
+								}
+								if(player2.units[unit2].hp <= 0){
+									player.points++;
+								}
+							}
 						}
 					}
 				}
@@ -134,8 +142,8 @@ setInterval(function() {
 			lastUpdateTime = currentTime;
 		}
 	}
-	// Remove any dead units
 	
+	// Remove any dead units
 	for(var id in players){
 		var removes = [];
 		var player = players[id];
@@ -150,6 +158,7 @@ setInterval(function() {
 	}
 }, 1000 / 60);
 
+// Replication
 setInterval(function() {
 	var currentTime = (new Date()).getTime();
 	var timeDifference = currentTime - lastUpdateTime;
