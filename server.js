@@ -95,7 +95,7 @@ io.on('connection', function(socket) {
 	});
 });
 
-function intersects(x0,y0,x1,y1,r0,r1){
+function intersects(x0,y0,r0,x1,y1,r1){
 	//return Math.hypot(x0-x1, y0-y1) <= (r0 + r1);
 	var dx = x0 - x1;
 	var dy = y0 - y1;
