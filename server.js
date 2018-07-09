@@ -150,12 +150,12 @@ setInterval(function() {
 				}
 				if(player.units[unit].x < player.units[unit].path.x){
 					player.units[unit].x += player.speed;
-				}else{
+				}else if(player.units[unit].x > player.units[unit].path.x){
 					player.units[unit].x -= player.speed;
 				}
 				if(player.units[unit].y < player.units[unit].path.y){
 					player.units[unit].y += player.speed;
-				}else{
+				}else if(player.units[unit].y > player.units[unit].path.y){
 					player.units[unit].y -= player.speed;
 				}
 			}
